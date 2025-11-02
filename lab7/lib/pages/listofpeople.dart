@@ -36,11 +36,24 @@ class ListOfPeoplePage extends StatelessWidget {
                             title: Text(resume.fullName),
                             subtitle: Text(resume.currentSituation),
                             onTap: () => context.go("/homepage", extra: resume),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                viewModel.deleteResume(resume.id);
-                              },
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.copy),
+                                  tooltip: 'Duplicate',
+                                  onPressed: () {
+                                    context.push("/newresume", extra: resume);
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  tooltip: 'Delete',
+                                  onPressed: () {
+                                    viewModel.deleteResume(resume.id);
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         );
